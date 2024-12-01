@@ -2,6 +2,10 @@
   "name": "aoc-2024",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "start": "bun run index.ts",
+    "generate": "bun run generate-day.ts --day"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -9,7 +13,9 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "prettier": "^3.4.1",
-    "prompts": "^2.4.2"
+    "@inquirer/prompts": "^7.1.0",
+    "@types/node": "^22.10.1",
+    "prettier": "^3.4.1"
   }
 }
+

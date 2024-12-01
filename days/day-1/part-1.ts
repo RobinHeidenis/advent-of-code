@@ -1,11 +1,8 @@
-export default async function part1() {
-  const input = Bun.file("./days/day-1/inputs/part-1.txt");
-  const lines = (await input.text()).split("\n").filter((line) => !!line);
-
+export default async function part1(input: string[]) {
   const left: number[] = [];
   const right: number[] = [];
 
-  lines.forEach((line) => {
+  input.forEach((line) => {
     const [l, r] = line
       .split("   ")
       .filter((line) => line !== undefined && line !== null)
@@ -31,5 +28,3 @@ export default async function part1() {
 const sortNumbers = (a: number, b: number) => {
   return a - b;
 };
-
-console.log(await part1());

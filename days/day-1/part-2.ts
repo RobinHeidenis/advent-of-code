@@ -1,11 +1,8 @@
-export default async function part2() {
-  const input = Bun.file("./days/day-1/input.txt");
-  const lines = (await input.text()).split("\n").filter((line) => !!line);
-
+export default async function part2(input: string[]) {
   const left: number[] = [];
   const rightCounts = new Map<number, number>();
 
-  lines.forEach((line) => {
+  input.forEach((line) => {
     const [l, r] = line
       .split("   ")
       .filter((line) => line !== undefined && line !== null)
@@ -33,4 +30,3 @@ export default async function part2() {
   return similarityScore;
 }
 
-console.log(await part2());
