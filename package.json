@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "bun run index.ts",
+    "watch": "bun run --watch index.ts",
     "generate": "bun run generate-day.ts --day"
   },
   "devDependencies": {
