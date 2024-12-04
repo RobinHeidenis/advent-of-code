@@ -45,9 +45,13 @@ try {
 
 const createDayPartString = (part: string) => {
   return `export default async function part${part}(input: string[]) {
+  let total = 0;
+
   input.forEach((line) => {
-    // TODO: implement this
+    
   });
+
+  return total;
 }\n`;
 };
 
