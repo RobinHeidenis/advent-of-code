@@ -61,6 +61,8 @@ export const processInput = async (day: string, runWithRealInput: boolean) => {
     ? await Bun.file(`./days/${day}/input.txt`).text()
     : await Bun.file(`./days/${day}/test.txt`).text();
 
+  if (day === "day-5") return rawInput;
+
   return rawInput.split("\n").filter((line) => line !== "");
 };
 
@@ -74,5 +76,3 @@ export const formatDayPart = (dayOrPart: string, capitalize = false) => {
 
   return withoutDash.charAt(0).toUpperCase() + withoutDash.slice(1);
 };
-
-
