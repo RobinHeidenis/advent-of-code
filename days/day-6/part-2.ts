@@ -15,20 +15,55 @@ export default async function part2(input: string[]) {
     map.push(line.split(""));
   });
 
+  let direction: "N" | "E" | "S" | "W" = "N";
+
   const startingY = map.findIndex((row) =>
     row.find((col) => col.includes("^")),
   );
   const startingX = map[startingY].findIndex((col) => col === "^");
 
+  const state: { x: number; y: number; direction: "N" | "E" | "S" | "W" } = {
+    x: startingX,
+    y: startingY,
+    direction,
+  };
+
+  while (
+    state.x >= 0 &&
+    state.x <= map[0].length &&
+    state.y >= 0 &&
+    state.y <= map.length
+  ) {
+    map[state.y][state.x] = "X";
+    const directionMove = directionMap[state.direction];
+
+    const nextRow = map[state.y + directionMove.y];
+
+    const nextTile = nextRow[state.x + directionMove.x];
+
+    if (nextTile === undefined) break;
+
+    if (nextTile === "#") {
+      state.direction =
+        directions.at(
+          directions.findIndex((direction) => direction === state.direction) +
+            1,
+        ) ?? "N";
+
+      continue;
+    }
+
+    state.x = state.x + directionMove.x;
+    state.y = state.y + directionMove.y;
+  }
+
   for (let y = 0; y < map.length; y++) {
     const row = map[y];
     for (let x = 0; x < row.length; x++) {
-      if (map[y][x] === "#") continue;
+      if (map[y][x] !== "X") continue;
 
       const newMap = structuredClone(map);
       newMap[y][x] = "#";
-
-      console.log(y, x);
 
       if (!guardEscapes(startingX, startingY, newMap)) {
         total++;
@@ -41,7 +76,7 @@ export default async function part2(input: string[]) {
 
 // Solve time: 13 minutes and 29 seconds
 // Total solve time: 48 minutes and 38 seconds
-// Execution time: 15 seconds :)
+// Execution time: 15 seconds :) [Edit: after a simple optimization it is now only 4 seconds]
 
 const constructSetKey = (x: number, y: number, direction: string) => {
   return `${x},${y},${direction}`;
