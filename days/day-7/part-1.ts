@@ -1,7 +1,8 @@
 export default async function part1(input: string[]) {
   let total = 0;
 
-  input.forEach((line) => {
+  input.forEach((line, index) => {
+    console.log(index);
     const [targetString, numbersString] = line.split(": ");
     const target = Number(targetString);
     const numbers = numbersString.split(" ").map(Number);
@@ -16,17 +17,13 @@ export default async function part1(input: string[]) {
       return;
     }
 
-    if (numbers.length === 2) return;
-
-    for (let i = 1; i < factorial(numbers.length - 1, 1); i++) {
-      const bitPositions = toBinary(i)
-        .padStart(numbers.length - 1, "0")
-        .split("") as ("0" | "1")[];
-
-      let currentTotal = doMath(numbers[0], numbers[1], bitPositions[0]);
+    const positions = generateStringVariants(numbers.length - 1);
+    for (let i = 1; i < positions.length; i++) {
+      const operators = positions[i].split("") as ("0" | "1")[];
+      let currentTotal = doMath(numbers[0], numbers[1], operators[0]);
       for (let j = 1; j < numbers.length - 1; j++) {
         if (currentTotal > target) break;
-        currentTotal = doMath(currentTotal, numbers[j + 1], bitPositions[j]);
+        currentTotal = doMath(currentTotal, numbers[j + 1], operators[j]);
       }
 
       if (currentTotal === target) {
@@ -41,10 +38,6 @@ export default async function part1(input: string[]) {
 
 // Solve time: 48 minutes
 
-const toBinary = (decimal: number) => {
-  return (decimal >> 0).toString(2);
-};
-
 const factorial = (decimal: number, total: number) => {
   if (decimal === 1) return total + 1;
 
@@ -58,3 +51,29 @@ const doMath = (left: number, right: number, operator: "0" | "1") => {
 
   return left * right;
 };
+
+function generateStringVariants(length: number): string[] {
+  // Handle edge cases
+  if (length === 0) return [];
+  if (length === 1) return ["0", "1"];
+
+  // Initialize the result with single-digit strings
+  let variants: string[] = ["0", "1"];
+
+  // Iteratively build longer strings
+  for (let currentLength = 2; currentLength <= length; currentLength++) {
+    // Create a new array to hold the expanded variants
+    const newVariants: string[] = [];
+
+    // For each existing variant, append 1 and 2
+    for (const variant of variants) {
+      newVariants.push(variant + "0");
+      newVariants.push(variant + "1");
+    }
+
+    // Update variants to the new, longer set of strings
+    variants = newVariants;
+  }
+
+  return variants;
+}
