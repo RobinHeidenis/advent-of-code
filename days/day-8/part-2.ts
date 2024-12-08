@@ -1,12 +1,15 @@
+import type { Coordinate } from "~/lib/types";
+import { isInBounds, makeLocationKey } from "./shared";
+
 export default async function part2(input: string[]) {
-  const frequencies = new Map<string, { x: number; y: number }[]>();
+  const frequencies = new Map<string, Coordinate[]>();
   const antinodes = new Set<string>();
 
   input.forEach((line, y) => {
     line.split("").forEach((char, x) => {
       if (char === ".") return;
 
-      antinodes.add(makeLocationKey(x, y));
+      antinodes.add(makeLocationKey({ x, y }));
 
       if (!frequencies.has(char)) {
         frequencies.set(char, [{ x, y }]);
@@ -23,8 +26,8 @@ export default async function part2(input: string[]) {
 
       locationsWithoutCurrent.forEach((otherLocation) => {
         let outOfBounds = false;
-        let currentLocation: Location = location;
-        let nextLocation: Location = otherLocation;
+        let currentLocation: Coordinate = location;
+        let nextLocation: Coordinate = otherLocation;
 
         while (!outOfBounds) {
           const { inBounds, targetX, targetY } = isInBounds(
@@ -39,8 +42,8 @@ export default async function part2(input: string[]) {
             break;
           }
 
-          if (!antinodes.has(makeLocationKey(targetX, targetY))) {
-            antinodes.add(makeLocationKey(targetX, targetY));
+          if (!antinodes.has(makeLocationKey({ x: targetX, y: targetY }))) {
+            antinodes.add(makeLocationKey({ x: targetX, y: targetY }));
           }
 
           currentLocation = nextLocation;
@@ -55,26 +58,3 @@ export default async function part2(input: string[]) {
 
 // Solve time: 9 minutes and 33 seconds
 // Total solve time: 29 minutes and 48 seconds
-
-const makeLocationKey = (x: number, y: number) => {
-  return `${x},${y}`;
-};
-
-type Location = { x: number; y: number };
-
-const isInBounds = (
-  currentLocation: Location,
-  otherLocation: Location,
-  maxX: number,
-  maxY: number,
-) => {
-  const deltaX = otherLocation.x - currentLocation.x;
-  const deltaY = otherLocation.y - currentLocation.y;
-
-  const targetX = otherLocation.x + deltaX;
-  const targetY = otherLocation.y + deltaY;
-  const inBounds =
-    targetX >= 0 && targetX < maxX && targetY >= 0 && targetY < maxY;
-
-  return { inBounds, targetX, targetY };
-};

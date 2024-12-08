@@ -52,7 +52,7 @@ export const determineDayPartToRunFromArgs = (args: {
 
 export const getDayFunction = async (day: string, part: string) => {
   return (await import(`../days/${day}/${part}.ts`)).default as (
-    input: string[],
+    input: string[] | string,
   ) => Promise<unknown>;
 };
 

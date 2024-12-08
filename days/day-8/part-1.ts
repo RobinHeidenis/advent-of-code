@@ -1,5 +1,8 @@
+import type { Coordinate } from "~/lib/types.ts";
+import { isInBounds, makeLocationKey } from "./shared";
+
 export default async function part1(input: string[]) {
-  const frequencies = new Map<string, { x: number; y: number }[]>();
+  const frequencies = new Map<string, Coordinate[]>();
   const antinodes = new Set<string>();
 
   input.forEach((line, y) => {
@@ -15,37 +18,29 @@ export default async function part1(input: string[]) {
     });
   });
 
-  console.log(frequencies);
-
   frequencies.forEach((frequency) => {
     frequency.forEach((location, index) => {
       const locationsWithoutCurrent = [...frequency].toSpliced(index, 1);
 
       locationsWithoutCurrent.forEach((otherLocation) => {
-        const deltaX = otherLocation.x - location.x;
-        const deltaY = otherLocation.y - location.y;
+        const { inBounds, targetX, targetY } = isInBounds(
+          location,
+          otherLocation,
+          input[0].length,
+          input.length,
+        );
 
-        const targetX = otherLocation.x + deltaX;
-        const targetY = otherLocation.y + deltaY;
         if (
-          targetX >= 0 &&
-          targetX < input[0].length &&
-          targetY >= 0 &&
-          targetY < input.length &&
-          !antinodes.has(makeLocationKey(targetX, targetY))
+          inBounds &&
+          !antinodes.has(makeLocationKey({ x: targetX, y: targetY }))
         ) {
-          antinodes.add(makeLocationKey(targetX, targetY));
+          antinodes.add(makeLocationKey({ x: targetX, y: targetY }));
         }
       });
     });
   });
 
-  console.log(antinodes);
   return antinodes.size;
 }
 
 // Solve time: 20 minutes and 15 seconds
-
-const makeLocationKey = (x: number, y: number) => {
-  return `${x},${y}`;
-};
