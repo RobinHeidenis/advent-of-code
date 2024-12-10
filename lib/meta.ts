@@ -4,10 +4,12 @@ import { color } from "bun";
 export const determineDayPartToRun = async (days: string[]) => {
   const day = await select({
     message: "Select a day to run",
-    choices: days.map((day) => ({
-      name: day.split("-").join(" "),
-      value: day,
-    })),
+    choices: days
+      .map((day) => ({
+        name: day.split("-").join(" "),
+        value: day,
+      }))
+      .sort((a, b) => (a.name < b.name ? -1 : 1)),
   });
 
   const part = await select({
@@ -44,7 +46,7 @@ export const determineDayPartToRunFromArgs = (args: {
   }
 
   return {
-    day: `day-${args.day}`,
+    day: `day-${args.day.padStart(2, "0")}`,
     part: `part-${args.part}`,
     runWithRealInput: !args.testInput,
   };

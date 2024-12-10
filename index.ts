@@ -30,6 +30,7 @@ if (args.values.day && args.values.part) {
 } else {
   settings = await determineDayPartToRun(days);
 }
+
 const input = await processInput(settings.day, settings.runWithRealInput);
 
 const dayFunction = await getDayFunction(settings.day, settings.part);
