@@ -58,12 +58,14 @@ export const getDayFunction = async (day: string, part: string) => {
   ) => Promise<unknown>;
 };
 
+const daysThatShouldGetRawInput = ["day-5", "day-13", "day-15"];
+
 export const processInput = async (day: string, runWithRealInput: boolean) => {
   const rawInput = runWithRealInput
     ? await Bun.file(`./days/${day}/input.txt`).text()
     : await Bun.file(`./days/${day}/test.txt`).text();
 
-  if (day === "day-5" || day === "day-13") return rawInput;
+  if (daysThatShouldGetRawInput.includes(day)) return rawInput;
 
   return rawInput.split("\n").filter((line) => line !== "");
 };
