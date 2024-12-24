@@ -58,7 +58,7 @@ export const getDayFunction = async (day: string, part: string) => {
   ) => Promise<unknown>;
 };
 
-const daysThatShouldGetRawInput = ["day-5", "day-13", "day-15"];
+const daysThatShouldGetRawInput = ["day-5", "day-13", "day-15", "day-24"];
 
 export const processInput = async (day: string, runWithRealInput: boolean) => {
   const rawInput = runWithRealInput
