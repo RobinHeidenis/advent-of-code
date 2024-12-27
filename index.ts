@@ -7,6 +7,7 @@ import {
   processInput,
 } from "./lib/meta";
 import { parseArgs, styleText } from "node:util";
+import { confirm } from "@inquirer/prompts";
 
 const days = await readdir("./days");
 
@@ -54,3 +55,13 @@ console.log(
     `Execution time: ${(timeAfter - timeBefore).toFixed(2)} milliseconds`,
   ),
 );
+
+if (settings.day === "day-25" && settings.part === "part-2") {
+  const result = await confirm({ message: "Did you get the correct answer?" });
+  if (result) {
+    console.log(styleText("yellow", "You saved Christmas!!!"));
+    console.log(styleText("yellow", "Merry Christmas!"));
+  } else {
+    console.log(styleText("red", "Keep on trying!"));
+  }
+}
