@@ -9,11 +9,11 @@ import {
 import { parseArgs, styleText } from "node:util";
 import { confirm } from "@inquirer/prompts";
 
-const days = await readdir("./days");
 
 const args = parseArgs({
   args: Bun.argv,
   options: {
+    year: { type: "string" },
     day: { type: "string" },
     part: { type: "string" },
     testInput: { type: "boolean" },
@@ -22,19 +22,19 @@ const args = parseArgs({
   allowPositionals: true,
 });
 
-let settings: { day: string; part: string; runWithRealInput: boolean };
+let settings: { year: string; day: string; part: string; runWithRealInput: boolean };
 
 if (args.values.day && args.values.part) {
   settings = determineDayPartToRunFromArgs(
     args.values as Required<typeof args.values>,
   );
 } else {
-  settings = await determineDayPartToRun(days);
+  settings = await determineDayPartToRun();
 }
 
-const input = await processInput(settings.day, settings.runWithRealInput);
+const input = await processInput(settings.year, settings.day, settings.runWithRealInput);
 
-const dayFunction = await getDayFunction(settings.day, settings.part);
+const dayFunction = await getDayFunction(settings.year, settings.day, settings.part);
 
 console.log(
   styleText(

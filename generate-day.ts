@@ -1,10 +1,12 @@
-import { mkdir, readdir, rmdir } from "node:fs/promises";
+import { exists, mkdir, readdir, rmdir } from "node:fs/promises";
 import { parseArgs, styleText } from "node:util";
 import { confirm } from "@inquirer/prompts";
+import { createDayPath } from "./lib/meta";
 
 const args = parseArgs({
   args: Bun.argv,
   options: {
+    year: { type: "string" },
     day: { type: "string" },
   },
   strict: false,
@@ -12,6 +14,12 @@ const args = parseArgs({
 });
 
 let day = args.values.day as string;
+let year = args.values.year as string;
+
+if (typeof year !== "string" || !year) {
+  console.log("You did not specify a year. Using the current year");
+  year = new Date().getFullYear().toString();
+}
 
 if (typeof day !== "string" || !day) {
   const createNextDay = await confirm({
@@ -24,12 +32,15 @@ if (typeof day !== "string" || !day) {
     process.exit(1);
   }
 
-  const days = await readdir("./days");
-  day = (days.length + 1).toString();
+  day = "1";
+  if (await exists(`./${year}/days`)) {
+    const days = await readdir(`./${year}/days`);
+    day = (days.length + 1).toString();
+  }
 }
 
 try {
-  await mkdir(`./days/day-${day}`);
+  await mkdir(`${createDayPath(year, day)}`, { recursive: true });
 } catch (error) {
   if (
     typeof error === "object" &&
@@ -56,7 +67,7 @@ const createDayPartString = (part: string) => {
 };
 
 const puzzleInputRequest = await fetch(
-  `https://adventofcode.com/2024/day/${day}/input`,
+  `https://adventofcode.com/${year}/day/${day}/input`,
   {
     headers: {
       cookie: `session=${process.env.AOC_COOKIE}`,
@@ -77,16 +88,16 @@ if (!puzzleInputRequest.ok) {
 }
 
 if (!continueWithoutInput && !puzzleInputRequest.ok) {
-  await rmdir(`./days/day-${day}`, { recursive: true });
+  await rmdir(`${createDayPath(year, day)}`, { recursive: true });
   process.exit(1);
 }
 
 await Bun.write(
-  `./days/day-${day}/input.txt`,
+  `${createDayPath(year, day)}/input.txt`,
   puzzleInputRequest.ok ? await puzzleInputRequest.text() : "",
 );
-await Bun.write(`./days/day-${day}/test.txt`, "");
-await Bun.write(`./days/day-${day}/part-1.ts`, createDayPartString("1"));
-await Bun.write(`./days/day-${day}/part-2.ts`, createDayPartString("2"));
+await Bun.write(`${createDayPath(year, day)}/test.txt`, "");
+await Bun.write(`${createDayPath(year, day)}/part-1.ts`, createDayPartString("1"));
+await Bun.write(`${createDayPath(year, day)}/part-2.ts`, createDayPartString("2"));
 
 console.log(styleText("green", `Day ${day} created`));
