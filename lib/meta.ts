@@ -13,7 +13,7 @@ export const determineDayPartToRun = async () => {
   if (!currentYear) {
     year = await select({
       message: "Select a year to run",
-      choices: (await readdir("./")).filter(dir => dir.match(/^\d{4}$/)),
+      choices: (await readdir("./")).filter((dir) => dir.match(/^\d{4}$/)),
     });
   }
 
@@ -70,23 +70,30 @@ export const determineDayPartToRunFromArgs = (args: {
 
   return {
     year,
-    day: `day-${args.day.padStart(2, "0")}`,
+    day: `${args.day.padStart(2, "0")}`,
     part: `part-${args.part}`,
     runWithRealInput: !args.testInput,
   };
 };
 
-export const getDayFunction = async (year: string, day: string, part: string) => {
-  return (await import(`../${year}/days/${day}/${part}.ts`)).default as (
-    input: string[] | string,
-  ) => Promise<unknown>;
+export const getDayFunction = async (
+  year: string,
+  day: string,
+  part: string,
+) => {
+  return (await import(`../${createDayPath(year, day)}/${part}.ts`))
+    .default as (input: string[] | string) => Promise<unknown>;
 };
 
 const daysThatShouldGetRawInput = {
- '2024': ["day-5", "day-13", "day-15", "day-24", "day-25"],
+  "2024": ["day-5", "day-13", "day-15", "day-24", "day-25"],
 } as Record<string, string[]>;
 
-export const processInput = async (year: string, day: string, runWithRealInput: boolean) => {
+export const processInput = async (
+  year: string,
+  day: string,
+  runWithRealInput: boolean,
+) => {
   const rawInput = runWithRealInput
     ? await Bun.file(`${createDayPath(year, day)}/input.txt`).text()
     : await Bun.file(`${createDayPath(year, day)}/test.txt`).text();
@@ -107,4 +114,5 @@ export const formatDayPart = (dayOrPart: string, capitalize = false) => {
   return withoutDash.charAt(0).toUpperCase() + withoutDash.slice(1);
 };
 
-export const createDayPath = (year: string, day: string) => `./${year}/days/${day}`;
+export const createDayPath = (year: string, day: string) =>
+  `./${year}/days/day-${day.padStart(2, "0")}`;
