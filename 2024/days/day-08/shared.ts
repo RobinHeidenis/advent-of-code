@@ -1,8 +1,4 @@
-import type { Coordinate } from "~/lib/types";
-
-export const makeLocationKey = ({ x, y }: Coordinate) => {
-  return `${x},${y}`;
-};
+import type { Coordinate } from "~/lib/grid";
 
 export const isInBounds = (
   currentLocation: Coordinate,

@@ -1,4 +1,4 @@
-import type { Coordinate } from "../../lib/types";
+import type { Coordinate } from "~/lib/grid";
 
 function getKey(c: Coordinate, dir: number) {
   return `${c.x},${c.y},${dir}`;

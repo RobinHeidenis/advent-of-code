@@ -1,5 +1,5 @@
-import type { Coordinate } from "~/lib/types";
-import { isInBounds, makeLocationKey } from "./shared";
+import { makeCoordinateKey } from "../../../lib/grid";
+import { isInBounds, } from "./shared";
 
 export default async function part2(input: string[]) {
   const frequencies = new Map<string, Coordinate[]>();
@@ -9,7 +9,7 @@ export default async function part2(input: string[]) {
     line.split("").forEach((char, x) => {
       if (char === ".") return;
 
-      antinodes.add(makeLocationKey({ x, y }));
+      antinodes.add(makeCoordinateKey({ x, y }));
 
       if (!frequencies.has(char)) {
         frequencies.set(char, [{ x, y }]);
@@ -42,8 +42,8 @@ export default async function part2(input: string[]) {
             break;
           }
 
-          if (!antinodes.has(makeLocationKey({ x: targetX, y: targetY }))) {
-            antinodes.add(makeLocationKey({ x: targetX, y: targetY }));
+          if (!antinodes.has(makeCoordinateKey({ x: targetX, y: targetY }))) {
+            antinodes.add(makeCoordinateKey({ x: targetX, y: targetY }));
           }
 
           currentLocation = nextLocation;

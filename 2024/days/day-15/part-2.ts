@@ -1,5 +1,4 @@
-import { check } from "prettier";
-import type { Coordinate } from "../../lib/types";
+import type { Coordinate } from "~/lib/grid";
 
 const movementMap = {
   v: [1, 0],

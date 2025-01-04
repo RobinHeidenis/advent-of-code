@@ -1,4 +1,4 @@
-import type { Coordinate } from "../../lib/types";
+import type { Coordinate } from "~/lib/grid";
 
 export default async function part1(input: string[]) {
   const endPositions: Coordinate[] = [];

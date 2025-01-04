@@ -1,5 +1,5 @@
-import type { Coordinate } from "~/lib/types.ts";
-import { isInBounds, makeLocationKey } from "./shared";
+import { makeCoordinateKey, type Coordinate } from "../../../lib/grid";
+import { isInBounds } from "./shared";
 
 export default async function part1(input: string[]) {
   const frequencies = new Map<string, Coordinate[]>();
@@ -32,9 +32,9 @@ export default async function part1(input: string[]) {
 
         if (
           inBounds &&
-          !antinodes.has(makeLocationKey({ x: targetX, y: targetY }))
+          !antinodes.has(makeCoordinateKey({ x: targetX, y: targetY }))
         ) {
-          antinodes.add(makeLocationKey({ x: targetX, y: targetY }));
+          antinodes.add(makeCoordinateKey({ x: targetX, y: targetY }));
         }
       });
     });
