@@ -32,6 +32,9 @@ export default async function part2(input: string[]) {
   return totalSafe;
 }
 
+// Solve time: 23 minutes and 12 seconds
+// Total solve time: 32 minutes and 50 seconds
+
 const determineUnsafe = (mode: "asc" | "desc", current: number, next: number) =>
   (mode === "asc" && current > next) ||
   (mode === "desc" && current < next) ||

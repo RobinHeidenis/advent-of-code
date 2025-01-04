@@ -1,0 +1,37 @@
+name: Generate graphs
+on:
+  push:
+    paths:
+      - '2015/**'
+      - '2016/**'
+      - '2017/**'
+      - '2018/**'
+      - '2019/**'
+      - '2020/**'
+      - '2021/**'
+      - '2022/**'
+      - '2023/**'
+      - '2024/**'
+      - '2025/**'
+      - '2026/**'
+jobs:
+  generate-graphs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install packages
+        run: bun install
+      - name: Generate graphs
+        run: bun run generate-graphs.ts
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add charts/
+          git commit -m "CI: Generate graphs" || echo "No changes to commit"
+          git push origin || echo "No changes to commit"

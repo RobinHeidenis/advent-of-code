@@ -30,3 +30,5 @@ export default async function part2(input: string[]) {
   return similarityScore;
 }
 
+// Solve time: 3 minutes and 42 seconds
+// Total solve time: 8 minutes and 54 seconds

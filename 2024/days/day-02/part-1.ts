@@ -28,3 +28,5 @@ export default async function part1(input: string[]) {
 
   return totalSafe;
 }
+
+// Solve time: 9 minutes and 38 seconds
