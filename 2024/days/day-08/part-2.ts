@@ -1,5 +1,5 @@
-import { makeCoordinateKey } from "../../../lib/grid";
-import { isInBounds, } from "./shared";
+import { makeCoordinateKey, type Coordinate } from "~/lib/grid";
+import { isInBounds } from "./shared";
 
 export default async function part2(input: string[]) {
   const frequencies = new Map<string, Coordinate[]>();

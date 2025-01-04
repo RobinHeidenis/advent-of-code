@@ -1,4 +1,4 @@
-import { makeCoordinateKey, type Coordinate } from "../../../lib/grid";
+import { makeCoordinateKey, type Coordinate } from "~/lib/grid";
 import { isInBounds } from "./shared";
 
 export default async function part1(input: string[]) {

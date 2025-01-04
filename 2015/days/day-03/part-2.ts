@@ -1,4 +1,4 @@
-import { makeCoordinateKey, type Coordinate } from "../../../lib/grid";
+import { makeCoordinateKey, type Coordinate } from "~/lib/grid";
 
 const directionMap = {
   ">": [1, 0],
@@ -16,23 +16,14 @@ export default async function part2(input: string[]) {
   for (let [index, instruction] of input[0].split("").entries()) {
     const delta = directionMap[instruction as keyof typeof directionMap];
 
-    let coordinateKey: string;
-    if (index % 2 === 0) {
-      santaState.y += delta[1];
-      santaState.x += delta[0];
-      coordinateKey = makeCoordinateKey(santaState);
-    } else {
-      santaBotState.y += delta[1];
-      santaBotState.x += delta[0];
-      coordinateKey = makeCoordinateKey(santaBotState);
-    }
+    const state = index % 2 === 0 ? santaState : santaBotState;
+    state.y += delta[1];
+    state.x += delta[0];
 
-    if (visitMap.has(coordinateKey)) {
-      const currentAmount = visitMap.get(coordinateKey);
-      visitMap.set(coordinateKey, currentAmount! + 1);
-    } else {
-      visitMap.set(coordinateKey, 1);
-    }
+    const coordinateKey = makeCoordinateKey(state);
+
+    const currentAmount = visitMap.get(coordinateKey) ?? 0;
+    visitMap.set(coordinateKey, currentAmount + 1);
   }
 
   return Array.from(visitMap).reduce(

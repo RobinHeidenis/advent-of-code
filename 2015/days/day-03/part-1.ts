@@ -1,4 +1,4 @@
-import type { Coordinate } from "~/lib/grid";
+import { makeCoordinateKey, type Coordinate } from "~/lib/grid";
 
 const directionMap = {
   ">": [1, 0],
@@ -18,12 +18,9 @@ export default async function part1(input: string[]) {
     state.x += delta[0];
 
     const coordinateKey = makeCoordinateKey(state);
-    if (visitMap.has(coordinateKey)) {
-      const currentAmount = visitMap.get(coordinateKey);
-      visitMap.set(coordinateKey, currentAmount! + 1);
-    } else {
-      visitMap.set(coordinateKey, 1);
-    }
+
+    const currentAmount = visitMap.get(coordinateKey) ?? 0;
+    visitMap.set(coordinateKey, currentAmount! + 1);
   }
 
   return Array.from(visitMap).reduce(
@@ -33,7 +30,3 @@ export default async function part1(input: string[]) {
 }
 
 // Solve time: 8 minutes and 11 seconds
-
-const makeCoordinateKey = (coordinate: Coordinate) => {
-  return `${coordinate.x},${coordinate.y}`;
-};
