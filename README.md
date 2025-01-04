@@ -43,10 +43,33 @@
 
 ## About Advent of Code
 
-Advent of Code is an Advent calendar of small programming puzzles for a variety of skill levels that can be solved in any programming language you like. People use them as interview prep, company training, university coursework, practice problems, a speed contest, or to challenge each other.
+Advent of Code is an Advent calendar of small programming puzzles
+for a variety of skill levels that can be solved
+in any programming language you like.
+People use them as interview prep, company training,
+university coursework, practice problems, a speed contest,
+or to challenge each other.
 
-You don''t completed those yet, I still had a lot of fun.
-I got all 50 stars.
+You don't need a computer science background to participate -
+just a little programming knowledge and some problem solving skills
+will get you pretty far. Nor do you need a fancy computer;
+every problem has a solution that completes in at most
+15 seconds on ten-year-old hardware.
+
+By completing the challenges, you earn stars.
+After earning all 50 stars, you save Christmas!
+
+## My Advent of Code journey
+
+I started participating in Advent of Code in 2022, where I got 12 stars...
+
+In 2023 I took it a bit more serious, and got all 50 stars.
+You can find my solutions in [this repository](https://github.com/RobinHeidenis/aoc-2023).
+
+2024 was a really fun year since it was the 10th anniversary of AOC.
+I got all 50 stars, and you can find my solutions in this repository.
+It had a bunch of references to the other years,
+and even though I haven't completed those yet, I still had a lot of fun.
 
 Now I'm working on completing all the years since 2015 before the 2025 edition starts.
 
