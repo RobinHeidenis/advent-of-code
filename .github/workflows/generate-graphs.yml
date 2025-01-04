@@ -33,5 +33,5 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add charts/
-          git commit -m "CI: Generate graphs" || echo "No changes to commit"
+          git commit -m "CI: generate graphs" || echo "No changes to commit"
           git push origin || echo "No changes to commit"
