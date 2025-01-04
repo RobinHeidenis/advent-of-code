@@ -11,52 +11,30 @@
     <summary>Table of Contents</summary>
     <ol>
         <li>
-          <a href="#about-heimdall">About Heimdall</a>
+          <a href="#about-advent-of-code">About Advent of Code</a>
         </li>
         <li>
-          <a href="#features">Features</a>
+          <a href="#my-advent-of-code-journey">My Advent of Code journey</a>
         </li>
         <li>
-            <a href="#usage">Usage</a>
-            <ul>
-                <li><a href="#docker-container">Docker container</a></li>
-                <ul>
-                    <li><a href="#using-docker-desktop">Using Docker Desktop</a></li>
-                </ul>
-                <li><a href="#standalone-application">Standalone application</a></li>
-                <ul>
-                    <li><a href="#using-docker-desktop-1">Using Docker Desktop</a></li>
-                </ul>
-            </ul>
+          <a href="#running-the-solutions">Running the solutions</a>
+        </li>
+        <li>
+          <a href="#advanced-usage">Advanced usage</a>
         </li>
         <li>
           <a href="#technologies">Technologies</a>
           <ul>
             <li><a href="#language">Language</a></li>
-            <li><a href="#deployed-to">Deployed to</a></li>
+            <li><a href="#package-manager--runtime">Package manager / Runtime</a></li>
             <li><a href="#cicd">CI/CD</a></li>
-            <li><a href="#released-using">Released using</a></li>
-            <li><a href="#logo-created-using">Logo created using</a></li>
           </ul>
         </li>
         <li>
-          <a href="#screenshots">Screenshots</a>
+          <a href="#solve-time-charts">Solve time charts</a>
             <ul>
-                <li><a href="#terminal-output">Terminal output</a></li>
-                <li><a href="#discord-notifications">Discord notifications</a></li>
-                <ul>
-                    <li><a href="#container-started">Container started</a></li>
-                    <li><a href="#container-stopped">Container stopped</a></li>
-                    <li><a href="#container-healthy">Container healthy</a></li>
-                    <li><a href="#container-unhealthy">Container unhealthy</a></li>
-                    <li><a href="#container-errored">Container errored</a></li>
-                </ul>
-                <li><a href="#periodic-notification">Periodic notification</a></li>
-                <ul>
-                    <li><a href="#running-containers">Running containers</a></li>
-                    <li><a href="#all-containers">All containers</a></li>
-                </ul>
-                <li><a href="#notifications-with-a-hostname">Notifications with a hostname</a></li>
+                <li><a href="#2015">2015</a></li>
+                <li><a href="#2024">2024</a></li>
             </ul>
         </li>
       </ol>
@@ -67,20 +45,7 @@
 
 Advent of Code is an Advent calendar of small programming puzzles for a variety of skill levels that can be solved in any programming language you like. People use them as interview prep, company training, university coursework, practice problems, a speed contest, or to challenge each other.
 
-You don't need a computer science background to participate - just a little programming knowledge and some problem solving skills will get you pretty far. Nor do you need a fancy computer; every problem has a solution that completes in at most 15 seconds on ten-year-old hardware.
-
-By completing the challenges, you earn stars.
-After earning all 50 stars, you save Christmas!
-
-## My Advent of Code journey
-
-I started participating in Advent of Code in 2022, where I got 12 stars...
-
-In 2023 I took it a bit more serious, and got all 50 stars.
-You can find my solutions in [this repository](https://github.com/RobinHeidenis/aoc-2023).
-2024 was a really fun year since it was the 10th anniversary of AOC.
-It had a bunch of references to the other years,
-and even though I haven't completed those yet, I still had a lot of fun.
+You don''t completed those yet, I still had a lot of fun.
 I got all 50 stars.
 
 Now I'm working on completing all the years since 2015 before the 2025 edition starts.
