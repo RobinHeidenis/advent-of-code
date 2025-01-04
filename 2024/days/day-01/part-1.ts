@@ -30,3 +30,5 @@ export default async function part1(input: string[]) {
 const sortNumbers = (a: number, b: number) => {
   return a - b;
 };
+
+// trigger ci
