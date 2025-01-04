@@ -25,6 +25,8 @@ export default async function part1(input: string[]) {
   return totalDifference;
 }
 
+// Solve time: 5 minutes and 12 seconds
+
 const sortNumbers = (a: number, b: number) => {
   return a - b;
 };
