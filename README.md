@@ -73,6 +73,16 @@ and even though I haven't completed those yet, I still had a lot of fun.
 
 Now I'm working on completing all the years since 2015 before the 2025 edition starts.
 
+As of 2025-01-25, I have successfully achieved all stars for AOC 2015.
+2015 felt quite a lot easier than 2024, as you can probably tell from the graphs below.
+There certainly were some tough ones, but overall the difficulty has increased quite
+a lot in recent years. I enjoyed the simplicity, but also the toughness in some of them
+that made you look up more efficient solutions or algorithms to help solve the puzzle.
+
+I can tell the storylines have gotten better in recent years, since 2015's storyline was
+nearly non-existant, just random exercises it felt like. I'm excited for february, where
+we're going to get our stars back from the easter bunny :D. See you in the next paragraph!
+
 ## Running the solutions
 
 This project uses [Bun](https://bun.sh) instead of Node.js.
@@ -122,10 +132,10 @@ It uses the following technologies:
 
 ## Solve time charts
 
-### 2015
-
-![2015 chart](./charts/2015.png)
-
 ### 2024
 
 ![2024 chart](./charts/2024.png)
+
+### 2015
+
+![2015 chart](./charts/2015.png)
