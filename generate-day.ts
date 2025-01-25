@@ -97,7 +97,17 @@ await Bun.write(
   puzzleInputRequest.ok ? await puzzleInputRequest.text() : "",
 );
 await Bun.write(`${createDayPath(year, day)}/test.txt`, "");
-await Bun.write(`${createDayPath(year, day)}/part-1.ts`, createDayPartString("1"));
-await Bun.write(`${createDayPath(year, day)}/part-2.ts`, createDayPartString("2"));
+await Bun.write(
+  `${createDayPath(year, day)}/part-1.ts`,
+  createDayPartString("1"),
+);
+
+// Day 25 always only has one part, the other part is pressing a button on the website
+if (day !== "25") {
+  await Bun.write(
+    `${createDayPath(year, day)}/part-2.ts`,
+    createDayPartString("2"),
+  );
+}
 
 console.log(styleText("green", `Day ${day} created`));
