@@ -24,12 +24,11 @@ export class Grid {
   }
 
   public set({ x, y }: Coordinate, value: boolean) {
-    if (this.get({ x, y }) !== undefined) {
-      this.grid[y][x] = value;
-      return true;
+    if (!this.grid[y]) {
+      this.grid[y] = [];
     }
 
-    return false;
+    this.grid[y][x] = value;
   }
 
   public setBulk(coordinates: Coordinate[], value: boolean) {
