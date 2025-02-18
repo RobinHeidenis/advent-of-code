@@ -14,7 +14,6 @@ export class GridPathfinder {
     this.cols = grid[0].length;
   }
 
-  // Helper method to check if a point is valid and walkable
   private isValidPoint(point: Point): boolean {
     return (
       point.x >= 0 &&
@@ -25,34 +24,61 @@ export class GridPathfinder {
     );
   }
 
-  // Possible movement directions (up, right, down, left)
   private directions: Point[] = [
-    { x: -1, y: 0 }, // Up
-    { x: 0, y: 1 }, // Right
-    { x: 1, y: 0 }, // Down
-    { x: 0, y: -1 }, // Left
+    { x: -1, y: 0 },
+    { x: 0, y: 1 },
+    { x: 1, y: 0 },
+    { x: 0, y: -1 },
   ];
 
-  // Find the shortest path using Breadth-First Search
+  findReachablePoints(start: Point, steps: number): Point[] {
+    const reachablePoints: Point[] = [];
+    const queue: { point: Point; distance: number }[] = [
+      { point: start, distance: 0 },
+    ];
+    const visited = new Set<string>();
+    visited.add(`${start.x},${start.y}`);
+    reachablePoints.push(start);
+
+    while (queue.length > 0) {
+      const { point, distance } = queue.shift()!;
+
+      if (distance < steps) {
+        for (const dir of this.directions) {
+          const nextPoint: Point = {
+            x: point.x + dir.x,
+            y: point.y + dir.y,
+          };
+
+          const nextPointKey = `${nextPoint.x},${nextPoint.y}`;
+
+          if (this.isValidPoint(nextPoint) && !visited.has(nextPointKey)) {
+            queue.push({ point: nextPoint, distance: distance + 1 });
+            visited.add(nextPointKey);
+            reachablePoints.push(nextPoint);
+          }
+        }
+      }
+    }
+
+    return reachablePoints;
+  }
+
   findShortestPath(start: Point, end: Point): Point[] | null {
-    // Queue to keep track of points to visit
     const queue: { point: Point; path: Point[] }[] = [
       { point: start, path: [start] },
     ];
 
-    // Set to keep track of visited points
     const visited = new Set<string>();
     visited.add(`${start.x},${start.y}`);
 
     while (queue.length > 0) {
       const { point, path } = queue.shift()!;
 
-      // Check if we've reached the end
       if (point.x === end.x && point.y === end.y) {
         return path;
       }
 
-      // Explore neighboring points
       for (const dir of this.directions) {
         const nextPoint: Point = {
           x: point.x + dir.x,
@@ -61,7 +87,6 @@ export class GridPathfinder {
 
         const nextPointKey = `${nextPoint.x},${nextPoint.y}`;
 
-        // Check if the next point is valid and not visited
         if (this.isValidPoint(nextPoint) && !visited.has(nextPointKey)) {
           queue.push({
             point: nextPoint,
@@ -72,11 +97,9 @@ export class GridPathfinder {
       }
     }
 
-    // No path found
     return null;
   }
 
-  // Helper method to find start and end points
   findSpecialPoints(): { start: Point; end: Point } {
     let start: Point | null = null;
     let end: Point | null = null;
@@ -104,4 +127,13 @@ export function solveGridPath(grid: string[][]): Point[] | null {
   const pathfinder = new GridPathfinder(grid);
   const { start, end } = pathfinder.findSpecialPoints();
   return pathfinder.findShortestPath(start, end);
+}
+
+export function findReachable(
+  grid: string[][],
+  start: Point,
+  steps: number,
+): Point[] {
+  const pathfinder = new GridPathfinder(grid);
+  return pathfinder.findReachablePoints(start, steps);
 }
