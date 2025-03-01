@@ -84,6 +84,13 @@ I can tell the storylines have gotten better in recent years, since 2015's story
 nearly non-existant, just random exercises it felt like. I'm excited for february, where
 we're going to get our stars back from the easter bunny :D. See you in the next paragraph!
 
+2016 was definitely more fun in terms of story, all revolving around the easter bunny.
+Just as with 2015, the difficulty was quite a bit lower than 2024, but still a lot of fun.
+Some puzzles were quite annoying to do, especially the ones focussing on pathfinding,
+which I've now made a simple class for to make it easier to solve those puzzles.
+
+I plan on making more library functions to use for common cases.
+
 ## Running the solutions
 
 This project uses [Bun](https://bun.sh) instead of Node.js.
@@ -133,13 +140,17 @@ It uses the following technologies:
 
 ## Solve time charts
 
-### 2016
+### 2017
 
-![2016 chart](./charts/2016.png)
+![2017 chart](./charts/2017.png)
 
 ### 2024
 
 ![2024 chart](./charts/2024.png)
+
+### 2016
+
+![2016 chart](./charts/2016.png)
 
 ### 2015
 
