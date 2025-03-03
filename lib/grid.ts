@@ -4,26 +4,22 @@ export const makeCoordinateKey = (coordinate: Coordinate) => {
   return `${coordinate.x},${coordinate.y}`;
 };
 
-export class Grid {
-  private grid: boolean[][] = [];
+export class Grid<T = boolean> {
+  protected grid: T[][] = [];
 
   public getGrid() {
     return this.grid;
   }
 
-  public setGrid(grid: boolean[][]) {
+  public setGrid(grid: T[][]) {
     this.grid = grid;
-  }
-
-  public import(input: string[]) {
-    this.grid = input.map((line) => line.split("").map((c) => c === "#"));
   }
 
   public get({ x, y }: Coordinate) {
     return this.grid[y]?.[x];
   }
 
-  public set({ x, y }: Coordinate, value: boolean) {
+  public set({ x, y }: Coordinate, value: T) {
     if (!this.grid[y]) {
       this.grid[y] = [];
     }
@@ -31,7 +27,7 @@ export class Grid {
     this.grid[y][x] = value;
   }
 
-  public setBulk(coordinates: Coordinate[], value: boolean) {
+  public setBulk(coordinates: Coordinate[], value: T) {
     coordinates.forEach((coordinate) => {
       this.set(coordinate, value);
     });
@@ -51,7 +47,7 @@ export class Grid {
   }
 
   public copy() {
-    const newGrid = new Grid();
+    const newGrid = new Grid<T>();
     newGrid.setGrid(this.grid.map((row) => row.slice()));
     return newGrid;
   }
@@ -62,6 +58,16 @@ export class Grid {
 
   public getXLength() {
     return this.grid[0].length;
+  }
+
+  toString() {
+    return this.grid.map((row) => row.join("")).join("\n");
+  }
+}
+
+export class BooleanGrid extends Grid<boolean> {
+  public import(input: string[]) {
+    this.grid = input.map((line) => line.split("").map((c) => c === "#"));
   }
 
   toString() {

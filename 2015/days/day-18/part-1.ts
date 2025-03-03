@@ -1,9 +1,9 @@
-import { Grid } from "~/lib/grid";
+import { BooleanGrid } from "~/lib/grid";
 
 export default async function part1(input: string[]) {
   const steps = 100;
 
-  const grid = new Grid();
+  const grid = new BooleanGrid();
   grid.import(input);
 
   for (let i = 0; i < steps; i++) {

@@ -1,4 +1,4 @@
-import { Grid } from "~/lib/grid";
+import { BooleanGrid } from "~/lib/grid";
 
 export default async function part1(input: string[]) {
   const screen = calculateEndScreen(input);
@@ -8,7 +8,7 @@ export default async function part1(input: string[]) {
 // Solve time: 16 minutes and 25 seconds
 
 export const calculateEndScreen = (input: string[]) => {
-  const screen = new Grid();
+  const screen = new BooleanGrid();
 
   for (let x = 0; x < 50; x++) {
     for (let y = 0; y < 6; y++) {
