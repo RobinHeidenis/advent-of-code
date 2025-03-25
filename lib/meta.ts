@@ -87,6 +87,7 @@ export const getDayFunction = async (
 
 const daysThatShouldGetRawInput = {
   "2024": ["day-5", "day-13", "day-15", "day-24", "day-25"],
+  "2017": ["day-25"],
 } as Record<string, string[]>;
 
 export const processInput = async (
@@ -98,7 +99,8 @@ export const processInput = async (
     ? await Bun.file(`${createDayPath(year, day)}/input.txt`).text()
     : await Bun.file(`${createDayPath(year, day)}/test.txt`).text();
 
-  if ((daysThatShouldGetRawInput[year] ?? []).includes(day)) return rawInput;
+  if ((daysThatShouldGetRawInput[year] ?? []).includes(`day-${day}`))
+    return rawInput;
 
   return rawInput.split("\n").filter((line) => line !== "");
 };
