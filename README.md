@@ -33,9 +33,10 @@
         <li>
           <a href="#solve-time-charts">Solve time charts</a>
             <ul>
-                <li><a href="#2018">2018</a></li>
+                <li><a href="#2025">2025</a></li>
                 <li><a href="#2024">2024</a></li>
-                <li><a href="#2017">2027</a></li>
+                <li><a href="#2018">2018</a></li>
+                <li><a href="#2017">2017</a></li>
                 <li><a href="#2016">2016</a></li>
                 <li><a href="#2015">2015</a></li>
             </ul>
@@ -142,13 +143,17 @@ It uses the following technologies:
 
 ## Solve time charts
 
-### 2018
+### 2025
 
-![2018 chart](./charts/2018.png)
+![2025 chart](./charts/2025.png)
 
 ### 2024
 
 ![2024 chart](./charts/2024.png)
+
+### 2018
+
+![2018 chart](./charts/2018.png)
 
 ### 2017
 
