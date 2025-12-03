@@ -43,3 +43,4 @@ export default async function part2(input: string[]) {
 }
 
 // Solve time: 15 minutes and 32 seconds
+// Total solve time: 20 minutes and 38 seconds
