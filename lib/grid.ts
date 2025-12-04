@@ -66,13 +66,16 @@ export class Grid<T = boolean> {
 }
 
 export class BooleanGrid extends Grid<boolean> {
-  public import(input: string[]) {
-    this.grid = input.map((line) => line.split("").map((c) => c === "#"));
+  private character = "#";
+  public import(input: string[], character = "#") {
+    this.character = character;
+    this.grid = input.map((line) => line.split("").map((c) => c === character));
+    return this;
   }
 
   toString() {
     return this.grid
-      .map((row) => row.map((c) => (c ? "#" : ".")).join(""))
+      .map((row) => row.map((c) => (c ? this.character : ".")).join(""))
       .join("\n");
   }
 }
