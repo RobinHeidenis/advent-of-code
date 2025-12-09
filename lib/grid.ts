@@ -1,7 +1,12 @@
 export type Coordinate = { x: number; y: number };
+export type Coordinate3D = Coordinate & { z: number };
 
 export const makeCoordinateKey = (coordinate: Coordinate) => {
   return `${coordinate.x},${coordinate.y}`;
+};
+
+export const make3DCoordinateKey = (coordinate: Coordinate3D) => {
+  return `${coordinate.x},${coordinate.y},${coordinate.z}`;
 };
 
 export class Grid<T = boolean> {
