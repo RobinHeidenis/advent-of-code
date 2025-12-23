@@ -68,7 +68,12 @@ console.log(
   ),
 );
 
-if (settings.day === "25" && settings.part === "part-1") {
+if (
+  (settings.day === "25" && settings.part === "part-1") ||
+  (Number(settings.year) >= 2025 &&
+    settings.day === "12" &&
+    settings.part === "part-1")
+) {
   const result = await confirm({ message: "Did you get the correct answer?" });
   if (result) {
     console.log(styleText("yellow", "You saved Christmas!!!"));

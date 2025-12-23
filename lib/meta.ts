@@ -88,6 +88,7 @@ export const getDayFunction = async (
 const daysThatShouldGetRawInput = {
   "2024": ["day-5", "day-13", "day-15", "day-24", "day-25"],
   "2017": ["day-25"],
+  "2025": ["day-12"],
 } as Record<string, string[]>;
 
 export const processInput = async (
