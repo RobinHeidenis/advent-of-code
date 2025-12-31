@@ -46,7 +46,7 @@ const withTimes = await Promise.all(
         ).toString();
 
         const part2Text =
-          day !== 25
+          day !== 25 && !(Number(year.year) >= 2025 && day === 12)
             ? (
                 await readFile(
                   `${year.year}/days/day-${day.toString().padStart(2, "0")}/part-2.ts`,
